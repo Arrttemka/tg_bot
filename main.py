@@ -10,6 +10,7 @@ EMAIL_PASSWORD = 'wrtehlocwkamuyls'
 TOKEN='6049827861:AAG9Qs0mYxGS4b3fgK2JI-7uAJl8WNfpqYk'
 bot = telebot.TeleBot(TOKEN)
 URL = "https://www.anekdot.ru/last/anekdot/"
+image_path = r"C:\Users\Артем\PycharmProjects\pythonProject7\horror.jpg"
 video_path = r"D:\DOWNLOADS\dark_burb.mp4"
 video_path1 = r"D:\DOWNLOADS\brat.MP4"
 video_path_maksik = r"D:\DOWNLOADS\maksim_kakaet.mp4"
@@ -29,7 +30,7 @@ random.shuffle(list_of_jokes)
 def start(message):
     bot.send_message(message.chat.id,'Привет, но если ты саша то иди ты нахуй черт')
     help(message)
-    if message.chat.id == 455657913 :     #455657913
+    if message.from_user.username == 'highest22' :     #455657913
         bot.send_message(message.chat.id, "Нет ты")
         with open(video_path_maksik, 'rb') as video_maksik:
             bot.send_video(message.chat.id, video_maksik)
@@ -61,7 +62,6 @@ def help(message):
 def handle_sticker(message):
     sticker = message.sticker
     file_id = sticker.file_id
-    image_path = r"C:\Users\Артем\PycharmProjects\pythonProject7\horror.jpg"
     with open(image_path, 'rb') as photo:
         bot.send_photo(message.chat.id, photo)
 
@@ -93,6 +93,13 @@ def brat(message):
     bot.send_message(message.chat.id, "ну шо ты братулец?! ")
     with open(video_path1, 'rb') as video_bratulets:
         bot.send_video(message.chat.id, video_bratulets)
+
+
+@bot.message_handler(content_types=['photo'])
+def handle_photo(message):
+    bot.send_message(message.chat.id, "ну и урод ")
+
+
 
 
 
